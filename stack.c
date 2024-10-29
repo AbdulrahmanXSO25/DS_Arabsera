@@ -1,45 +1,54 @@
+#include "stack.h"
 #include <stdio.h>
-
-#define MAX_STACK 100
-
-typedef int StackEntry;
-
-typedef struct stack
-{
-    int top;
-    StackEntry entry[MAX_STACK];
-} Stack;
 
 void Stack_init(Stack *sp)
 {
     sp->top = -1;
 }
 
-/*  Pre: The stack is initialized and not full
-    Post: The element `e` has been stored at the top of the stack, and `e` does not change.
-*/
 void Stack_push(StackEntry e, Stack *sp)
 {
-    sp->entry[++sp->top] = e;
+    if (sp->top < (MAX_STACK - 1))
+        sp->entry[++sp->top] = e;
+    else
+        printf("Error: Stack overflow\n");
 }
 
-void Stack_print(Stack s)
+void Stack_pop(StackEntry *e, Stack *sp)
 {
-    while (s.top > -1)
-    {
-        printf("Stack Entry %d: %d\n", s.top, s.entry[s.top]);
-        s.top--;
-    }
+    if (sp->top >= 0)
+        *e = sp->entry[sp->top--];
+    else
+        printf("Error: Stack underflow\n");
 }
 
-int main() {
+int Stack_empty(Stack *sp)
+{
+    return sp->top < 0;
+}
 
-    Stack s;
-    Stack_init(&s);
+int Stack_full(Stack *sp)
+{
+    return sp->top >= (MAX_STACK - 1);
+}
 
-    StackEntry e1 = 10;
+void Stack_top(StackEntry *e,Stack *sp)
+{
+    *e = sp->entry[sp->top];
+}
 
-    Stack_push(e1, &s);
+int Stack_size(Stack *sp)
+{
+    return (sp->top + 1);
+}
 
-    return 0;
+void Stack_clear(Stack *sp)
+{
+    sp->top = -1;
+}
+
+void Stack_traverse(Stack *sp, void (*pf) (StackEntry e))
+{
+    for(int i = 0; i <= sp->top; i++)
+        pf(sp->entry[i]);
 }

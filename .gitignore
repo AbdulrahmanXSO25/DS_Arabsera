@@ -1,0 +1,48 @@
+# Compiled Object files
+*.o
+
+# Executable files
+stack_program
+*.out
+*.exe
+
+# Debug files
+*.dSYM/
+*.stackdump
+*.core
+core
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.pid
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.code-workspace
+
+# Backup files
+*~
+*.swp
+*.swo
+*.bak
+
+# Makefile or CMake artifacts
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Generated documentation
+docs/
+*.pdf
+
+# Coverage and profiling files
+*.gcda
+*.gcno
+*.gcov
+
+# Build directories
+build/

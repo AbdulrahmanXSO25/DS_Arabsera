@@ -2,7 +2,7 @@
 *.o
 
 # Executable files
-stack_program
+program
 *.out
 *.exe
 
@@ -28,16 +28,6 @@ core
 *.swp
 *.swo
 *.bak
-
-# Makefile or CMake artifacts
-CMakeFiles/
-CMakeCache.txt
-Makefile
-cmake_install.cmake
-
-# Generated documentation
-docs/
-*.pdf
 
 # Coverage and profiling files
 *.gcda

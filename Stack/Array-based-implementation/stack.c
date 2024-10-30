@@ -1,9 +1,8 @@
 #include "stack.h"
-#include <stdio.h>
 
 void Stack_init(Stack *sp)
 {
-    sp->top = -1;
+    sp->top = -1; // == (*sp).top = -1;
 }
 
 void Stack_push(StackEntry e, Stack *sp)
@@ -22,12 +21,12 @@ void Stack_pop(StackEntry *e, Stack *sp)
         printf("Error: Stack underflow\n");
 }
 
-int Stack_empty(Stack *sp)
+int8_t Stack_empty(Stack *sp)
 {
     return sp->top < 0;
 }
 
-int Stack_full(Stack *sp)
+int8_t Stack_full(Stack *sp)
 {
     return sp->top >= (MAX_STACK - 1);
 }
@@ -37,7 +36,7 @@ void Stack_top(StackEntry *e,Stack *sp)
     *e = sp->entry[sp->top];
 }
 
-int Stack_size(Stack *sp)
+size_t Stack_size(Stack *sp)
 {
     return (sp->top + 1);
 }
@@ -47,8 +46,8 @@ void Stack_clear(Stack *sp)
     sp->top = -1;
 }
 
-void Stack_traverse(Stack *sp, void (*pf) (StackEntry e))
+void Stack_traverse(Stack *sp, void (*fp) (StackEntry e))
 {
     for(int i = 0; i <= sp->top; i++)
-        pf(sp->entry[i]);
+        fp(sp->entry[i]);
 }
